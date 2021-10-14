@@ -4,7 +4,12 @@ const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
 
-router.post("/", studentController.create);
+router.post(
+  "/",
+  userController.requireSignin,
+  userController.checkPermissions,
+  studentController.create
+);
 router.get(
   "/",
   userController.requireSignin,
