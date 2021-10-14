@@ -21,6 +21,7 @@ const userSchema = Schema(
     roleId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Role",
+      required: true,
     },
   },
   { timestamps: true }

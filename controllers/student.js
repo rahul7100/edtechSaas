@@ -11,15 +11,14 @@ exports.create = async (req, res) => {
         userId: req.body.userId,
         schoolId: req.body.schoolId,
       };
-      var userId = req.body.userId;
 
+      var userId = req.body.userId;
       await studentSchema.findOne({ userId }, async (err, result) => {
         if (err) {
           throw err;
         } else {
           if (!result) {
             const student = new studentSchema(studentObj);
-            console.log(student._id);
             var id = student._id;
             await schoolSchema.findOne(
               { _id: studentObj.schoolId },
@@ -53,11 +52,9 @@ exports.create = async (req, res) => {
           }
         }
       });
-    } else {
-      res.json({ msg: "Access Denied! Out of Scope" });
     }
   } catch (err) {
-    throw err;
+    res.json(err);
   }
 };
 

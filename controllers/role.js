@@ -31,7 +31,7 @@ exports.getall = async (req, res) => {
   try {
     const scope = req.scopes;
     if (scope.includes("role-get")) {
-      await roleSchema.find({}, (err, result) => {
+      await roleSchema.find({}, "name scopes", (err, result) => {
         if (err) {
           throw err;
         } else {
